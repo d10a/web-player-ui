@@ -25,6 +25,33 @@ body {
         height: 100%;
     }
 
+    #language-selection-container{
+        width: 30vw;
+        min-height: 30vw;
+        top: 50%;
+        left: 50%;
+        color:#ffffff;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: space-around;
+        //align-items: first;
+        z-index: 2000;
+        background-color: rgba(0,0,0, 0.9);
+        border-radius: 7px;
+        opacity: 1;
+        transition: opacity 200ms ease-out;
+
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    #language-selection-container.hidden{
+        opacity: 0;
+    }
+
     #controls-container {
         opacity: 1;
         transition: opacity 500ms ease-out;

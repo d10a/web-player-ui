@@ -59,27 +59,39 @@ function initControls(player){
         backwardButton: document.getElementById('backward'),
         timeline: document.getElementById('timeline'),
         currentTime: document.getElementById('current-time'),
-        languageSelector: document.getElementById('caption-language-selection'),
+        languageSelectorButton: document.getElementById('caption-language-selection'),
+        languageSelectionContainer: document.querySelector('#language-selection-container'),
+        audioLanguageList: document.querySelector('#language-selection-container #audio-container>ul'),
+        textLanguageList: document.querySelector('#language-selection-container #text-container>ul'),
+
     }
 
     controls.contentTitleContainer.textContent = 'Mon super film'
-    // controls.contentDurationContainer.textContent = parseInt(player.getMediaElement().duration).toString().toHHMMSS()
-
     updateVolumeIcon(controls.volumeButton)
 
     /**
      * set subtitles lang
      */
-    const audioLanguages = player.getAudioLanguages()
-    const textLanguages = player.getTextLanguages()
+    player.getAudioLanguages().forEach(lang => {
+        const langElement = document.createElement('li');
+        langElement.appendChild(document.createTextNode(lang))
+        controls.audioLanguageList.appendChild(langElement);
 
-    console.log(audioLanguages)
-    console.log(textLanguages)
+    })
+    console.log(controls.audioLanguageList)
+
+    player.getTextLanguages().forEach(lang => {
+        const langElement = document.createElement('li');
+        langElement.appendChild(document.createTextNode(lang))
+        controls.textLanguageList.appendChild(langElement);
+    })
 
     /**
      * Language selection layer
      */
-
+    controls.languageSelectorButton.addEventListener('click', (event) => {
+        controls.languageSelectionContainer.classList.toggle('hidden')
+    })
 
     /**
      * show controls
