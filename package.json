@@ -1,0 +1,21 @@
+{
+  "name": "web-player-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/d10a/web-player-ui.git",
+  "author": "David GASSAMA <dev@davidgassama.com>",
+  "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "parcel": "^2.0.0",
+    "sass": "^1.43.4"
+  },
+  "scripts": {
+    "dev": "yarn parcel src/index.html -p 8080",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "shaka-player": "^3.2.1"
+  }
+}
