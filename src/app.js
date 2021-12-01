@@ -78,7 +78,7 @@ function initControls(player){
 
     }
 
-    controls.contentTitleContainer.textContent = 'Mon super film'
+    controls.contentTitleContainer.textContent = 'Tears of Steel'
     updateVolumeIcon(controls.volumeButton)
 
     /**
