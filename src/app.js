@@ -12,13 +12,20 @@ String.prototype.toHHMMSS = function () {
 // ---------------------------------------------------------------------
 
 const manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/tos-ttml/dash.mpd';
-// const manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
 
+
+/**
+ * App init (player + controls)
+ */
 function initApp() {
+    // shaka.log.setLevel(shaka.log.Level.DEBUG);
     shaka.polyfill.installAll();
     if (shaka.Player.isBrowserSupported()) {
         initPlayer().then((player) => {
             initControls(player);
+            setTimeout(() => {
+                player.getMediaElement().play()
+            }, 2000)
         });
     } else {
         // This browser does not have the minimum set of APIs we need.
@@ -37,7 +44,7 @@ function updateVolumeIcon(volumeButton){
     if(player.getMediaElement().volume === 0){
         level = 'volume-xmark';
     }
-    console.log(level, player.getMediaElement().volume)
+
     // if(!volumeButton.firstElementChild.classList.contains('fa' + level)){
         volumeButton.firstElementChild.classList.remove('fa-volume')
         volumeButton.firstElementChild.classList.remove('fa-volume-low')
@@ -47,6 +54,11 @@ function updateVolumeIcon(volumeButton){
     // }
 }
 
+
+/**
+ * Init player controls
+ * @param player
+ */
 function initControls(player){
     const playerContainer = document.querySelector('#web-player-container')
     const controlsContainer = document.querySelector('#controls-container')
@@ -78,7 +90,6 @@ function initControls(player){
         controls.audioLanguageList.appendChild(langElement);
 
     })
-    console.log(controls.audioLanguageList)
 
     player.getTextLanguages().forEach(lang => {
         const langElement = document.createElement('li');
@@ -124,6 +135,7 @@ function initControls(player){
      * Display duration
      */
     let videoPercent = 0;
+    let videoBuffered = 0;
     player.getMediaElement().addEventListener('timeupdate', (event) => {
         controls.currentTime.innerText = parseInt(player.getMediaElement().currentTime).toString().toHHMMSS();
 
@@ -151,7 +163,6 @@ function initControls(player){
             controls.playPauseButton.firstElementChild.classList.add('fa-play')
             player.getMediaElement().pause();
         }
-
 
     });
 
@@ -199,7 +210,6 @@ function initPlayer() {
 
         player.load(manifestUri)
             .then(() => {
-                console.log('player ok man')
                 resolve(player)
             })
             .catch((error) => {
@@ -209,7 +219,6 @@ function initPlayer() {
 }
 
 function onErrorEvent(event) {
-    // Extract the shaka.util.Error object from the event.
     onError(event.detail);
 }
 
@@ -220,6 +229,5 @@ function onError(error) {
 
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    console.log("DOM entièrement chargé et analysé");
     initApp();
 });

@@ -11,7 +11,7 @@
     "sass": "^1.43.4"
   },
   "scripts": {
-    "dev": "yarn parcel src/index.html -p 8080",
+    "dev": "yarn parcel watch src/index.html -p 8080",
     "build": "parcel build src/index.html"
   },
   "dependencies": {
