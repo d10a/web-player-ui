@@ -7,14 +7,14 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
-    "parcel": "^2.0.0",
     "sass": "^1.43.4"
   },
   "scripts": {
-    "dev": "yarn parcel watch src/index.html -p 8080",
-    "build": "parcel build src/index.html"
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
-    "shaka-player": "^3.2.1"
+    "shaka-player": "^3.2.1",
+    "vite": "^2.7.13"
   }
 }

@@ -12,6 +12,7 @@ String.prototype.toHHMMSS = function () {
 // ---------------------------------------------------------------------
 
 const manifestUri = 'https://storage.googleapis.com/shaka-demo-assets/tos-ttml/dash.mpd';
+const poster = 'src/assets/tears_of_steel.jpg';
 
 
 /**
@@ -200,6 +201,7 @@ function initPlayer() {
     return new Promise((resolve, reject) => {
         // Create a Player instance.
         const video = document.getElementById('web-player');
+        video.setAttribute('poster', poster)
         const player = new shaka.Player(video);
 
         // Attach player to the window to make it easy to access in the JS console.
