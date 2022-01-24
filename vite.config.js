@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 
-module.export config = {
+let config = {
     mode: 'development',
     build: {
         target: 'esnext',
@@ -15,3 +15,5 @@ module.export config = {
         port: 8080
     }
 }
+
+module.exports = config;
